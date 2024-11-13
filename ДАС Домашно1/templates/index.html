@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+            width: 14.28%;
+            box-sizing: border-box;
+        }
+        thead, tbody {
+            display: block;
+        }
+        tbody {
+            max-height: 800px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border: 1px solid black;
+        }
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        thead tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        .sort-arrow {
+            margin-left: 5px;
+            visibility: hidden;
+        }
+        .sortable {
+            background: darkgrey;
+            border: 1px solid black;
+        }
+        th.sortable {
+            cursor: pointer;
+        }
+        th.active .sort-arrow {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Table</h2>
+
+
+        <form action="/scrape" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-success">Scrape Data</button>
+            <p>It takes a lot of time</p>
+        </form>
+
+
+        <form action="/read_file" method="post" style="display: inline;">
+            <label for="file_name">Select a file:</label>
+            <select name="file_name" id="file_name">
+                {% for file in files %}
+                    <option value="{{ file }}" {% if file == selected_file %}selected{% endif %}>{{ file }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Load File</button>
+        </form>
+
+        {% if latest_date %}
+            <p>Latest Date: {{ latest_date }}</p>
+        {% endif %}
+
+        {% if data %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Last Transaction</th>
+                        <th>Maximum</th>
+                        <th>Minimum</th>
+                        <th>Average</th>
+                        <th>Change</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row['Datum'].strftime('%d.%m.%Y') }}</td>
+                            <td>{{ row['Last Transaction'] }}</td>
+                            <td>{{ row['Maximum'] }}</td>
+                            <td>{{ row['Minimum'] }}</td>
+                            <td>{{ row['Average'] }}</td>
+                            <td>{{ row['Change'] }}</td>
+                            <td>{{ row['Amount'] }}</td>
+                            <td>{{ row['Total'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No data to display. Please select a file.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
