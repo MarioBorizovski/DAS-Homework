@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f0f8ff, #ffffff);
+            color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 50%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #007BFF;
+
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <h2>STOCKWISE</h2>
+            </div>
+            <div class="buttons">
+                <button onclick="window.location.href='/'">Back to Home</button>
+            </div>
+        </div>
+
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <p><strong>Марио Боризовски 213246</strong></p>
+            <p><strong>Милан Бошковски 203210</strong></p>
+            <p><strong>Дарко Радевски 211219</strong></p>
+        </div>
+    </div>
+</body>
+</html>
