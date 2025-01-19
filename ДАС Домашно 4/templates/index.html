@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body, html {
+            overflow: hidden;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        h1 {
+            margin-top: 100px;
+            color: #007BFF;
+        }
+        button, select {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .chart-image {
+            position: absolute;
+            top: 0px;
+            right: -50px;
+            width: 60vw;
+            height: 105vh;
+            object-fit: cover;
+            z-index: -1;
+            animation: float 4s ease-in-out infinite, fade-in 1s ease-out;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>STOCKWISE</h1>
+    <p>Select an option below:</p>
+
+    <form action="/read_file" method="post">
+        <label for="file_name">Choose a file:</label>
+        <select name="file_name" id="file_name" required>
+            <option value="" disabled selected>Select a file</option>
+            {% for file in files %}
+                <option value="{{ file }}">{{ file }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Table</button>
+    </form>
+
+    <br>
+    <form action="/scrape" method="post">
+    <button >Scrape Data</button>
+    </form>
+    <button onclick="window.location.href='/contact'">Contact Us</button>
+
+    <img src="{{ url_for('static', filename='images/floating_guy.png') }}" alt="Moving Image" class="chart-image">
+</body>
+</html>
